@@ -23,7 +23,8 @@ const styles = {
     borderColor: color.cyan,
     borderRadius: 10,
     borderStyle: 'solid',
-    padding: 10
+    padding: 10,
+    maxWidth: '90%'
   },
   lessonPlan: {
     ':hover': {
@@ -37,15 +38,39 @@ const styles = {
     marginLeft: 10
   },
   dotIcon: progressStyles.dotIcon,
-  lockButton: {
+  lockSettingsButton: {
     fontSize: 14,
     backgroundColor: color.cyan,
     color: color.white,
     marginLeft: 0,
-    marginTop: 10
+    marginTop: 10,
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingLeft: 10,
+    paddingRight: 10
   },
-  lockText: {
+  lockSettingsText: {
     marginLeft: 10
+  },
+  lockStageButton: {
+    fontSize: 14,
+    backgroundColor: color.orange,
+    color: color.white,
+    marginTop: 10,
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingLeft: 10,
+    paddingRight: 10
+  },
+  warning: {
+    position: 'relative',
+    top: 4
+  },
+  warnIcon: {
+    color: color.red
+  },
+  warnText: {
+    marginLeft: 5
   }
 };
 
@@ -60,7 +85,7 @@ const TeacherStageInfo = React.createClass({
   },
 
   render() {
-    // TODO - lessonPlanUrl
+    // TODO - i18n
     return (
       <div style={styles.container}>
         <div style={styles.main}>
@@ -72,13 +97,21 @@ const TeacherStageInfo = React.createClass({
           </span>
           {this.props.lockable &&
             <div>
-              <button style={styles.lockButton}>
+              <button style={styles.lockSettingsButton}>
                 <FontAwesome icon="lock"/>
-                {/* TODO - i18n */}
-                <span style={styles.lockText}>
+                <span style={styles.lockSettingsText}>
                   Lock settings
                 </span>
               </button>
+              <button style={styles.lockStageButton}>
+                Lock stage
+              </button>
+              <span style={styles.warning}>
+                <FontAwesome icon="exclamation-triangle" style={styles.warnIcon}/>
+                <span style={styles.warnText}>
+                  Lock as soon as students are done
+                </span>
+              </span>
             </div>
           }
         </div>
