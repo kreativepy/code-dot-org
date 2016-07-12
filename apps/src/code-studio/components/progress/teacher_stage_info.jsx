@@ -1,6 +1,7 @@
 /* global dashboard */
 
 import React from 'react';
+import Radium from 'radium';
 import FontAwesome from '@cdo/apps/templates/FontAwesome';
 import color from '../../../color';
 import progressStyles from './progressStyles';
@@ -25,6 +26,12 @@ const styles = {
     padding: 10
   },
   lessonPlan: {
+    ':hover': {
+      cursor: 'pointer',
+      textDecoration: 'underline'
+    }
+  },
+  lessonPlanText: {
     fontFamily: '"Gotham 5r", sans-serif',
     fontSize: 12,
     marginLeft: 10
@@ -44,8 +51,12 @@ const styles = {
 
 const TeacherStageInfo = React.createClass({
   propTypes: {
-    lessonPlanUrl: React.PropTypes.string,
+    lessonPlanUrl: React.PropTypes.string.isRequired,
     lockable: React.PropTypes.bool.isRequired
+  },
+
+  clickLessonPlan() {
+    window.open(this.props.lessonPlanUrl, '_blank');
   },
 
   render() {
@@ -53,9 +64,11 @@ const TeacherStageInfo = React.createClass({
     return (
       <div style={styles.container}>
         <div style={styles.main}>
-          <FontAwesome icon="file-text" style={styles.dotIcon}/>
-          <span style={styles.lessonPlan}>
-            {dashboard.i18n.t('view_lesson_plan')}
+          <span style={styles.lessonPlan} onClick={this.clickLessonPlan}>
+            <FontAwesome icon="file-text" style={styles.dotIcon}/>
+            <span style={styles.lessonPlanText}>
+              {dashboard.i18n.t('view_lesson_plan')}
+            </span>
           </span>
           {this.props.lockable &&
             <div>
@@ -74,4 +87,4 @@ const TeacherStageInfo = React.createClass({
   }
 });
 
-export default TeacherStageInfo;
+export default Radium(TeacherStageInfo);
