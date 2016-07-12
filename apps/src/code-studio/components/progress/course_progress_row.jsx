@@ -5,15 +5,11 @@ import Radium from 'radium';
 import { connect } from 'react-redux';
 
 import { stageShape } from './types';
-import StageProgress from './stage_progress.jsx';
+import StageProgress from './stage_progress';
+import TeacherStageInfo from './teacher_stage_info';
 import color from '../../../color';
 
 const styles = {
-  lessonPlanLink: {
-    display: 'block',
-    fontFamily: '"Gotham 5r", sans-serif',
-    fontSize: 10
-  },
   row: {
     position: 'relative',
     boxSizing: 'border-box',
@@ -37,7 +33,7 @@ const styles = {
   stageName: {
     display: 'table-cell',
     width: 200,
-    verticalAlign: 'middle',
+    verticalAlign: 'top',
     paddingRight: 10
   },
   ribbonWrapper: {
@@ -108,20 +104,19 @@ const CourseProgressRow = React.createClass({
         ]}
         <div style={styles.stageName}>
           {this.props.professionalLearningCourse ? stage.name : stage.title}
-          {this.props.showLessonPlanLinks && stage.lesson_plan_html_url &&
-            <a
-              target='_blank'
-              href={stage.lesson_plan_html_url}
-              style={styles.lessonPlanLink}
-            >
-              {dashboard.i18n.t('view_lesson_plan')}
-            </a>
-          }
         </div>
-        <StageProgress
-          levels={stage.levels}
-          courseOverviewPage={true}
-        />
+        <div>
+          {this.props.showLessonPlanLinks &&
+            <TeacherStageInfo
+                lessonPlanUrl={stage.lesson_plan_html_url}
+                lockable={stage.lockable}
+            />
+          }
+          <StageProgress
+            levels={stage.levels}
+            courseOverviewPage={true}
+          />
+        </div>
       </div>
     );
   }
