@@ -5,6 +5,7 @@ import Radium from 'radium';
 import FontAwesome from '@cdo/apps/templates/FontAwesome';
 import color from '../../../color';
 import progressStyles from './progressStyles';
+import StageLock from './StageLock';
 
 /**
  * A component that renders information in our StageProgress view that is only
@@ -37,41 +38,7 @@ const styles = {
     fontSize: 12,
     marginLeft: 10
   },
-  dotIcon: progressStyles.dotIcon,
-  lockSettingsButton: {
-    fontSize: 14,
-    backgroundColor: color.cyan,
-    color: color.white,
-    marginLeft: 0,
-    marginTop: 10,
-    paddingTop: 5,
-    paddingBottom: 5,
-    paddingLeft: 10,
-    paddingRight: 10
-  },
-  lockSettingsText: {
-    marginLeft: 10
-  },
-  lockStageButton: {
-    fontSize: 14,
-    backgroundColor: color.orange,
-    color: color.white,
-    marginTop: 10,
-    paddingTop: 5,
-    paddingBottom: 5,
-    paddingLeft: 10,
-    paddingRight: 10
-  },
-  warning: {
-    position: 'relative',
-    top: 4
-  },
-  warnIcon: {
-    color: color.red
-  },
-  warnText: {
-    marginLeft: 5
-  }
+  dotIcon: progressStyles.dotIcon
 };
 
 const TeacherStageInfo = React.createClass({
@@ -95,25 +62,7 @@ const TeacherStageInfo = React.createClass({
               {dashboard.i18n.t('view_lesson_plan')}
             </span>
           </span>
-          {this.props.lockable &&
-            <div>
-              <button style={styles.lockSettingsButton}>
-                <FontAwesome icon="lock"/>
-                <span style={styles.lockSettingsText}>
-                  Lock settings
-                </span>
-              </button>
-              <button style={styles.lockStageButton}>
-                Lock stage
-              </button>
-              <span style={styles.warning}>
-                <FontAwesome icon="exclamation-triangle" style={styles.warnIcon}/>
-                <span style={styles.warnText}>
-                  Lock as soon as students are done
-                </span>
-              </span>
-            </div>
-          }
+          {this.props.lockable && <StageLock/>}
         </div>
       </div>
     );
