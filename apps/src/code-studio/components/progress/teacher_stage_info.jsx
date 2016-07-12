@@ -52,7 +52,6 @@ const TeacherStageInfo = React.createClass({
   },
 
   render() {
-    // TODO - i18n
     return (
       <div style={styles.container}>
         <div style={styles.main}>

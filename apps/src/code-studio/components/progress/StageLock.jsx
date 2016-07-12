@@ -1,7 +1,7 @@
 import React from 'react';
 import color from '../../../color';
 import FontAwesome from '@cdo/apps/templates/FontAwesome';
-// import DialogComponent from '@cdo/apps/templates/DialogComponent';
+import DialogComponent from '@cdo/apps/templates/DialogComponent';
 
 const styles = {
   lockSettingsButton: {
@@ -41,10 +41,25 @@ const styles = {
 };
 
 const StageLock = React.createClass({
+  getInitialState() {
+    return {
+      dialogIsOpen: false
+    };
+  },
+
+  openDialog() {
+    this.setState({dialogIsOpen: true});
+  },
+
+  closeDialog() {
+    this.setState({dialogIsOpen: false});
+  },
+
   render() {
+    // TODO - i18n
     return (
       <div>
-        <button style={styles.lockSettingsButton}>
+        <button style={styles.lockSettingsButton} onClick={this.openDialog}>
           <FontAwesome icon="lock"/>
           <span style={styles.lockSettingsText}>
             Lock settings
@@ -59,13 +74,15 @@ const StageLock = React.createClass({
             Lock as soon as students are done
           </span>
         </span>
+        <DialogComponent
+            isOpen={this.state.dialogIsOpen}
+            handleClose={this.closeDialog}
+        >
+          asdf
+        </DialogComponent>
       </div>
     );
   }
 });
 
 export default StageLock;
-
-// <DialogComponent isOpen={true} handleClose={() => console.log('close')}>
-//   asdf
-// </DialogComponent>
