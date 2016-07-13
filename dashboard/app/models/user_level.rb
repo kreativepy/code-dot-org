@@ -12,6 +12,7 @@
 #  script_id       :integer
 #  level_source_id :integer
 #  submitted       :boolean
+#  locked          :boolean
 #
 # Indexes
 #

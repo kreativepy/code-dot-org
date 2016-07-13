@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160707171413) do
+ActiveRecord::Schema.define(version: 20160713232635) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "user_id",         limit: 4
@@ -671,6 +671,7 @@ ActiveRecord::Schema.define(version: 20160707171413) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "flex_category", limit: 255
+    t.boolean  "lockable"
   end
 
   create_table "survey_results", force: :cascade do |t|
@@ -750,6 +751,7 @@ ActiveRecord::Schema.define(version: 20160707171413) do
     t.integer  "script_id",       limit: 4
     t.integer  "level_source_id", limit: 4
     t.boolean  "submitted"
+    t.boolean  "locked"
   end
 
   add_index "user_levels", ["user_id", "level_id", "script_id"], name: "index_user_levels_on_user_id_and_level_id_and_script_id", unique: true, using: :btree
