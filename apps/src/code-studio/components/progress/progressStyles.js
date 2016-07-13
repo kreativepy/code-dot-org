@@ -24,5 +24,15 @@ const progressStyles = {
       backgroundColor: 'transparent'
     }
   },
+  blueButton: {
+    fontSize: 14,
+    backgroundColor: color.cyan,
+    color: color.white,
+    marginLeft: 0,
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingLeft: 10,
+    paddingRight: 10
+  }
 };
 export default progressStyles;

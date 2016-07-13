@@ -1,20 +1,16 @@
 import React from 'react';
+import Radium from 'radium';
 import color from '../../../color';
 import FontAwesome from '@cdo/apps/templates/FontAwesome';
-import DialogComponent from '@cdo/apps/templates/DialogComponent';
+import StageLockDialog from './StageLockDialog';
+import progressStyles from './progressStyles';
 
 const styles = {
-  lockSettingsButton: {
-    fontSize: 14,
-    backgroundColor: color.cyan,
-    color: color.white,
-    marginLeft: 0,
-    marginTop: 10,
-    paddingTop: 5,
-    paddingBottom: 5,
-    paddingLeft: 10,
-    paddingRight: 10
-  },
+  lockSettingsButton: [
+    progressStyles.blueButton, {
+      marginTop: 10,
+    }
+  ],
   lockSettingsText: {
     marginLeft: 10
   },
@@ -39,6 +35,17 @@ const styles = {
     marginLeft: 5
   }
 };
+
+const fakeData = [
+  {
+    name: 'Farrah',
+    locked: true
+  },
+  {
+    name: 'George',
+    locked: false
+  }
+];
 
 const StageLock = React.createClass({
   getInitialState() {
@@ -74,15 +81,13 @@ const StageLock = React.createClass({
             Lock as soon as students are done
           </span>
         </span>
-        <DialogComponent
+        <StageLockDialog
             isOpen={this.state.dialogIsOpen}
             handleClose={this.closeDialog}
-        >
-          asdf
-        </DialogComponent>
+            lockStatus={fakeData}/>
       </div>
     );
   }
 });
 
-export default StageLock;
+export default Radium(StageLock);
