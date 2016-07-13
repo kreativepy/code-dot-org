@@ -1,6 +1,6 @@
 import React from 'react';
 import Radium from 'radium';
-import DialogComponent from '@cdo/apps/templates/DialogComponent';
+import BaseDialog from '@cdo/apps/templates/BaseDialog';
 import progressStyles from './progressStyles';
 import color from '../../../color';
 
@@ -49,7 +49,7 @@ const StageLockDialog = React.createClass({
     // TODO - use pauls dialog stuff when its in
     // TODO - can i control dialog width?
     return (
-      <DialogComponent
+      <BaseDialog
           isOpen={this.props.isOpen}
           handleClose={this.props.handleClose}
       >
@@ -81,7 +81,7 @@ const StageLockDialog = React.createClass({
             </tbody>
           </table>
         </div>
-      </DialogComponent>
+      </BaseDialog>
     );
   }
 });
