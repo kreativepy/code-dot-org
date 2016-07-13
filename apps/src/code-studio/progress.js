@@ -30,8 +30,6 @@ progress.renderStageProgress = function (stageData, progressData, scriptName,
     level => level.submitted ? SUBMITTED_RESULT : level.result)));
 
   // Provied a function that can be called later to merge in progress now saved on the client.
-  // TODO we should probably instead be exposing the store, and anyone can dispatch
-  // this action
   progress.refreshStageProgress = function () {
     store.dispatch(mergeProgress(clientState.allLevelsProgress()[scriptName] || {}));
   };
@@ -68,9 +66,11 @@ progress.renderCourseProgress = function (scriptData, currentLevelId) {
 
     // Merge progress from server (loaded via AJAX)
     if (data.levels) {
-      store.dispatch(mergeProgress(_.mapValues(data.levels,
-        level => level.submitted ? SUBMITTED_RESULT : level.result)
-      ));
+      store.dispatch(mergeProgress(
+        _.mapValues(data.levels,
+          level => level.submitted ? SUBMITTED_RESULT : level.result)
+        ), data.peerReviewsPerformed
+      );
     }
   });
 
@@ -92,14 +92,15 @@ progress.renderCourseProgress = function (scriptData, currentLevelId) {
  */
 function createStoreWithProgress(scriptData, currentLevelId,
     saveAnswersBeforeNavigation = false) {
-  const store = createStore(progressReducer, {
+  const store = createStore(progressReducer);
+
+  store.dispatch(initProgress({
     currentLevelId: currentLevelId,
     professionalLearningCourse: scriptData.plc,
-    progress: {},
-    focusAreaPositions: [],
     saveAnswersBeforeNavigation: saveAnswersBeforeNavigation,
-    stages: scriptData.stages
-  });
+    stages: scriptData.stages,
+    peerReviewsRequired: scriptData.peerReviewsRequired,
+  }));
 
   // Merge in progress saved on the client.
   store.dispatch(mergeProgress(
