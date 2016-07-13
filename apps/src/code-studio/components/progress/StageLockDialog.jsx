@@ -1,6 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
 import BaseDialog from '@cdo/apps/templates/BaseDialog';
+import ToggleGroup from '@cdo/apps/templates/ToggleGroup';
 import progressStyles from './progressStyles';
 import color from '../../../color';
 
@@ -74,7 +75,15 @@ const StageLockDialog = React.createClass({
               </tr>
               {this.props.lockStatus.map(({name, locked}, index) => (
                 <tr key={index}>
-                  <td style={styles.tableCell}>{locked ? 'Locked' : 'Unlocked'}</td>
+                  <td style={styles.tableCell}>
+                    <ToggleGroup
+                        selected={locked ? 'Locked' : 'Unlocked'}
+                        onChange={() => console.log('onchange')}>
+                      <button value="Locked">Locked</button>
+                      <button value="Unlocked">Unlocked</button>
+                    </ToggleGroup>
+                    {}
+                  </td>
                   <td style={[styles.tableCell, styles.secondCol]}>{name}</td>
                 </tr>
               ))}
