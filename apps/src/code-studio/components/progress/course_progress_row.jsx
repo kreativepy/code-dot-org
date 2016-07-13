@@ -74,7 +74,7 @@ const styles = {
  */
 const CourseProgressRow = React.createClass({
   propTypes: {
-    showLessonPlanLinks: React.PropTypes.bool,
+    showTeacherInfo: React.PropTypes.bool,
     professionalLearningCourse: React.PropTypes.bool,
     isFocusArea: React.PropTypes.bool,
     stage: stageShape
@@ -106,7 +106,7 @@ const CourseProgressRow = React.createClass({
           {this.props.professionalLearningCourse ? stage.name : stage.title}
         </div>
         <div>
-          {this.props.showLessonPlanLinks &&
+          {this.props.showTeacherInfo &&
             <TeacherStageInfo
                 lessonPlanUrl={stage.lesson_plan_html_url}
                 lockable={stage.lockable}
@@ -123,6 +123,6 @@ const CourseProgressRow = React.createClass({
 });
 
 export default connect(state => ({
-  showLessonPlanLinks: state.showLessonPlanLinks,
+  showTeacherInfo: state.showTeacherInfo,
   changeFocusAreaPath: state.changeFocusAreaPath
 }))(Radium(CourseProgressRow));
