@@ -77,7 +77,8 @@ const CourseProgressRow = React.createClass({
     showTeacherInfo: React.PropTypes.bool,
     professionalLearningCourse: React.PropTypes.bool,
     isFocusArea: React.PropTypes.bool,
-    stage: stageShape
+    stage: stageShape,
+    changeFocusAreaPath: React.PropTypes.string,
   },
 
   render() {
@@ -123,6 +124,6 @@ const CourseProgressRow = React.createClass({
 });
 
 export default connect(state => ({
-  showTeacherInfo: state.showTeacherInfo,
-  changeFocusAreaPath: state.changeFocusAreaPath
+  showTeacherInfo: state.progress.showTeacherInfo,
+  changeFocusAreaPath: state.progress.changeFocusAreaPath
 }))(Radium(CourseProgressRow));

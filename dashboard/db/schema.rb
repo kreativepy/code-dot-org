@@ -646,7 +646,7 @@ ActiveRecord::Schema.define(version: 20160713232635) do
     t.string   "login_type",   limit: 255, default: "email", null: false
     t.datetime "deleted_at"
     t.boolean  "stage_extras",             default: false,   null: false
-    t.string   "type",         limit: 255
+    t.string   "section_type", limit: 255
   end
 
   add_index "sections", ["code"], name: "index_sections_on_code", unique: true, using: :btree

@@ -140,7 +140,7 @@ export const BubbleInterior = React.createClass({
         bubbleInterior = '\u00a0';
       }
     } else {
-      bubbleInterior = this.props.title;
+      bubbleInterior = !this.props.showingIcon && this.props.title;
     }
 
     return (
@@ -246,6 +246,6 @@ export const ProgressDot = React.createClass({
 });
 
 export default connect(state => ({
-  currentLevelId: state.currentLevelId,
-  saveAnswersBeforeNavigation: state.saveAnswersBeforeNavigation
+  currentLevelId: state.progress.currentLevelId,
+  saveAnswersBeforeNavigation: state.progress.saveAnswersBeforeNavigation
 }))(Radium(ProgressDot));
