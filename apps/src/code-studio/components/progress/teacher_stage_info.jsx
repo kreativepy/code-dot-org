@@ -43,7 +43,7 @@ const styles = {
 
 const TeacherStageInfo = React.createClass({
   propTypes: {
-    lessonPlanUrl: React.PropTypes.string.isRequired,
+    lessonPlanUrl: React.PropTypes.string,
     lockable: React.PropTypes.bool.isRequired
   },
 
@@ -52,15 +52,21 @@ const TeacherStageInfo = React.createClass({
   },
 
   render() {
+    if (!this.props.lockable && !this.props.lessonPlanUrl) {
+      return <div/>;
+    }
+
     return (
       <div style={styles.container}>
         <div style={styles.main}>
-          <span style={styles.lessonPlan} onClick={this.clickLessonPlan}>
-            <FontAwesome icon="file-text" style={styles.dotIcon}/>
-            <span style={styles.lessonPlanText}>
-              {dashboard.i18n.t('view_lesson_plan')}
+          {this.props.lessonPlanUrl &&
+            <span style={styles.lessonPlan} onClick={this.clickLessonPlan}>
+              <FontAwesome icon="file-text" style={styles.dotIcon}/>
+              <span style={styles.lessonPlanText}>
+                {dashboard.i18n.t('view_lesson_plan')}
+              </span>
             </span>
-          </span>
+          }
           {this.props.lockable && <StageLock/>}
         </div>
       </div>

@@ -110,7 +110,7 @@ const CourseProgressRow = React.createClass({
           {this.props.showTeacherInfo &&
             <TeacherStageInfo
                 lessonPlanUrl={stage.lesson_plan_html_url}
-                lockable={stage.lockable}
+                lockable={!!stage.lockable}
             />
           }
           <StageProgress

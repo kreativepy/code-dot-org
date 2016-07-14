@@ -29,6 +29,9 @@ const styles = {
     borderColor: color.light_gray,
     padding: 10
   },
+  firstCol: {
+    whiteSpace: 'nowrap'
+  },
   secondCol: {
     width: '100%'
   }
@@ -75,7 +78,7 @@ const StageLockDialog = React.createClass({
               </tr>
               {this.props.lockStatus.map(({name, locked}, index) => (
                 <tr key={index}>
-                  <td style={styles.tableCell}>
+                  <td style={[styles.tableCell, styles.firstCol]}>
                     <ToggleGroup
                         selected={locked ? 'Locked' : 'Unlocked'}
                         onChange={() => console.log('onchange')}>
