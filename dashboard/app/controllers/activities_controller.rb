@@ -168,6 +168,7 @@ class ActivitiesController < ApplicationController
         script_level: @script_level,
         new_result: test_result,
         submitted: params[:submitted],
+        locked: (params[:submitted] == "true" && @script_level.stage.lockable).to_s,
         level_source_id: @level_source.try(:id),
         level: @level,
         pairings: pairings

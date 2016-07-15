@@ -1,0 +1,15 @@
+title 'Brent Script'
+description 'A script Brent crated'
+description_short 'short description'
+hidden 'false'
+
+stage 'Jigsaw'
+level 'blockly:Jigsaw:3'
+
+stage 'Rich long assessment',
+  lockable: true
+assessment 'PS U3 Assessment1 new'
+
+stage 'Farmer'
+level '4-5 While Loops 4'
+level 'Farmer for Authored Hint testing'

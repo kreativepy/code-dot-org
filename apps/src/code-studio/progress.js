@@ -51,6 +51,7 @@ progress.renderCourseProgress = function (scriptData, currentLevelId) {
     { data: { user_id: clientState.queryParams('user_id') } }
   ).done(data => {
     data = data || {};
+    debugger;
 
     // Show lesson plan links and other teacher info if teacher
     if (data.isTeacher) {

@@ -877,7 +877,7 @@ SQL
 
   # returns whether a new level has been completed and asynchronously enqueues an operation
   # to update the level progress.
-  def track_level_progress_async(script_level:, level:, new_result:, submitted:, level_source_id:, pairings:)
+  def track_level_progress_async(script_level:, level:, new_result:, submitted:, level_source_id:, pairings:, locked: nil)
     level_id = level.id
     script_id = script_level.script_id
     old_user_level = UserLevel.where(
@@ -895,6 +895,7 @@ SQL
       'new_result' => new_result,
       'level_source_id' => level_source_id,
       'submitted' => submitted,
+      'locked' => locked,
       'pairing_user_ids' => pairings ? pairings.map(&:id) : nil
     }
     if Gatekeeper.allows('async_activity_writes', where: {hostname: Socket.gethostname})
@@ -908,7 +909,7 @@ SQL
   end
 
   # The synchronous handler for the track_level_progress helper.
-  def self.track_level_progress_sync(user_id:, level_id:, script_id:, new_result:, submitted:, level_source_id:, pairing_user_ids: nil, is_navigator: false)
+  def self.track_level_progress_sync(user_id:, level_id:, script_id:, new_result:, submitted:, level_source_id:, pairing_user_ids: nil, is_navigator: false, locked: nil)
     new_level_completed = false
     new_level_perfected = false
 
@@ -934,6 +935,7 @@ SQL
       user_level.best_result = new_result if user_level.best_result.nil? ||
         new_result > user_level.best_result
       user_level.submitted = submitted
+      user_level.locked = locked
       user_level.level_source_id = level_source_id unless is_navigator
 
       user_level.save!
@@ -947,6 +949,7 @@ SQL
           script_id: script_id,
           new_result: new_result,
           submitted: submitted,
+          locked: locked,
           level_source_id: level_source_id,
           pairing_user_ids: nil,
           is_navigator: true
@@ -985,6 +988,7 @@ SQL
           script_id: op['script_id'],
           new_result: op['new_result'],
           submitted: op['submitted'],
+          locked: op['locked'],
           level_source_id: op['level_source_id'],
           pairing_user_ids: op['pairing_user_ids']
         )

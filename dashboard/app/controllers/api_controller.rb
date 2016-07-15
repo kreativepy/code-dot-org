@@ -238,6 +238,7 @@ class ApiController < ApplicationController
         end
 
         submitted = user_level.try(:submitted)
+        locked = user_level.try(:locked)
 
         timestamp = user_level[:updated_at].to_formatted_s
 
@@ -251,7 +252,8 @@ class ApiController < ApplicationController
           multi_count: multi_count,
           submitted: submitted,
           timestamp: timestamp,
-          level_results: level_results
+          level_results: level_results,
+          locked: locked
         }
       end.compact
     end.flatten

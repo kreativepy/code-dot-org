@@ -131,7 +131,8 @@ level 'blockly:Studio:hoc2015_blockly_5'
 stage 'Minecraft'
 level 'Overworld Chop Tree - allthethings'
 
-stage 'Rich long assessment'
+stage 'Rich long assessment',
+  lockable: true
 assessment 'PS U3 Assessment1 new'
 
 stage 'Free Response'
