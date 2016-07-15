@@ -37,8 +37,17 @@ class Stage < ActiveRecord::Base
   end
 
   def localized_title
+    # no numbering for locked stages
+    return I18n.t("data.script.name.#{script.name}.#{name}") if lockable
+
     if script.stages.to_a.many?
-      I18n.t('stage_number', number: position) + ': ' + I18n.t("data.script.name.#{script.name}.#{name}")
+      # don't want to count locked stages when figuring out the stage number
+      stage_number = position
+      script.stages.to_a.each_with_index do |stage, index|
+        stage_number -= 1 if index < position && stage.lockable
+      end
+
+      I18n.t('stage_number', number: stage_number) + ': ' + I18n.t("data.script.name.#{script.name}.#{name}")
     else # script only has one stage/game, use the script name
       script.localized_title
     end
@@ -104,6 +113,8 @@ class Stage < ActiveRecord::Base
         stage_data[:lesson_plan_html_url] = lesson_plan_html_url
         stage_data[:lesson_plan_pdf_url] = lesson_plan_pdf_url
       end
+
+      stage_data[:lockable] = lockable
 
       if script.hoc?
         stage_data[:finishLink] = script.hoc_finish_url
