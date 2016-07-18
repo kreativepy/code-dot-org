@@ -40,6 +40,8 @@ Dashboard::Application.configure do
     config.assets.version = '1.0'
   end
 
+  config.assets.quiet = true
+
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false

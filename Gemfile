@@ -1,14 +1,16 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2.6'
+gem 'rails', '~> 5.0.0'
+
+gem 'sprockets', '~> 3.6.3'
+gem 'sprockets-rails', '~> 3.1.1'
 
 # provide `respond_to` methods
 # (see: http://guides.rubyonrails.org/4_2_release_notes.html#respond-with-class-level-respond-to)
 gem 'responders', '~> 2.0'
 
-gem 'sinatra', require: 'sinatra/base'
-gem 'rack-contrib', '~> 1.1'
+gem 'sinatra', github: 'sinatra', require: 'sinatra/base'
 
 gem 'mysql2', '~> 0.3.13'
 gem 'seamless_database_pool'
@@ -21,7 +23,7 @@ gem 'dalli' # memcached
 gem 'parallel'
 
 gem 'google-api-client'
-gem 'sprockets-derailleur' # Multi-cpu assets precompile
+gem 'sprockets-derailleur', github: 'wjordan/sprockets-derailleur' # Multi-cpu assets precompile
 
 gem 'crowdin-cli'
 
@@ -29,26 +31,25 @@ gem 'crowdin-cli'
 gem 'rack_csrf'
 
 group :development do
-  gem 'annotate', '~> 2.6.6'
+  gem 'annotate'
   gem 'rack-mini-profiler'
   gem 'rerun', '~> 0.10.0'
   gem 'shotgun'
-  gem 'thin', '~> 1.6.2'
-  gem 'web-console', '~> 2.0'
+  gem 'thin'
+  gem 'web-console'
 end
 
 group :development, :test do
   gem 'rack-cache'
   # Use debugger
   #gem 'debugger' unless ENV['RM_INFO']
-  gem 'konacha'  # Mocha + Chai JS testing in Rails
+  gem 'konacha', github: 'wjordan/konacha', ref: 'rails-5'  # Mocha + Chai JS testing in Rails
   gem 'poltergeist'  # Headless JS tests.p
 
   gem 'haml-rails' # haml (instead of erb) generators
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'ruby-prof'
-  gem 'quiet_assets'
   gem 'active_record_query_trace'
   # for unit testing
   gem 'factory_girl_rails'
@@ -69,7 +70,7 @@ group :development, :test do
   gem 'rspec'
   gem 'chromedriver-helper', '~> 0.0.7'
   gem 'colorize'
-  gem 'spring'
+  gem 'spring', '~> 1.7.2'
   gem 'spring-commands-testunit'
   gem "minitest", "~> 5.5"
   gem 'minitest-reporters'
@@ -88,7 +89,7 @@ end
 # for pegasus PDF generation
 gem 'open_uri_redirections', require: false, group: [:development, :staging, :test]
 
-gem 'unicorn', '~> 4.8.2'
+gem 'unicorn', '~> 5.1.0'
 
 gem 'chronic', '~> 0.10.2'
 
@@ -99,7 +100,7 @@ gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails', '~> 3.1.0'
+gem 'jquery-rails'
 
 gem 'phantomjs', '~> 1.9.7.1'
 
@@ -108,15 +109,15 @@ gem 'jbuilder', '~> 1.2'
 
 # authentication and permissions
 gem 'devise'
-gem 'devise_invitable', '~> 1.5.2'
-gem 'cancancan', '~> 1.10' #CanCan is dead, long live CanCanCan
+gem 'devise_invitable', '~> 1.6.0'
+gem 'cancancan', '~> 1.15.0'
 
-gem 'omniauth-facebook'
-gem 'omniauth-google-oauth2'
-gem 'omniauth-windowslive', '~> 0.0.9'
-gem 'omniauth-clever', '~> 1.2.1'
+gem 'omniauth-facebook', '~> 4.0.0.rc1'
+gem 'omniauth-google-oauth2', '~> 0.3.1'
+gem 'omniauth-windowslive', '~> 0.0.10'
+gem 'omniauth-clever', '~> 1.2.1', github: 'wjordan/omniauth-clever'
 
-gem 'bootstrap-sass', '~> 2.3.2.2'
+gem 'bootstrap-sass', '~> 3.3.6'
 gem 'haml'
 
 gem 'jquery-ui-rails', '~> 5.0.3'
@@ -127,7 +128,7 @@ gem 'highline', '~> 1.6.21'
 
 gem 'honeybadger', '~> 1.11' # error monitoring
 
-gem 'newrelic_rpm', '~> 3.10.0.279', group: [:staging, :production] # perf/error/etc monitoring
+gem 'newrelic_rpm', '~> 3.16.0', group: [:staging, :production] # perf/error/etc monitoring
 
 gem 'redcarpet', '~> 3.3.4'
 
@@ -158,13 +159,13 @@ gem 'marked-rails' # js-based md renderer used for levelbuilder md preview
 gem 'twilio-ruby' # SMS API for send-to-phone feature
 
 gem 'font-awesome-rails', '~> 4.6.3'
-gem 'sequel', '~> 4.10.0'
+gem 'sequel', '~> 4.10'
 gem 'user_agent_parser'
 
 gem 'heroku_rails_deflate', group: [:staging, :production, :test, :levelbuilder] # gzip rails content and static assets
 # We don't use this gem in development because it doesn't work with rack-mini-profiler.
 
-gem "paranoia", "~> 2.0" # 'delete' Rails model objects by setting a deleted_at column instead of deleting the row
+gem "paranoia", "~> 2.2.0.pre" # 'delete' Rails model objects by setting a deleted_at column instead of deleting the row
 
 # JSON model serializer for REST APIs
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers', ref: '2962f3f64e7c672bfb5a13a8f739b5db073e5473'
@@ -184,18 +185,17 @@ gem 'lograge'
 gem 'rack-ssl-enforcer'
 
 # PubSub for NetSim
-gem 'pusher', '~> 0.14.5'
+gem 'pusher', '~> 1.0'
 
-gem 'youtube-dl.rb', group: [:development, :staging, :levelbuilder]
+gem 'youtube-dl.rb', github: 'layer8x/youtube-dl.rb', ref: 'activesupport-debacle', group: [:development, :staging, :levelbuilder]
 
 gem 'net-ssh'
 gem 'net-scp'
 gem 'httparty'
-gem 'jquery-cookie-rails'
 gem 'oj'
 gem 'daemons'
 
-gem 'rest-client', '~> 1.8'
+gem 'rest-client', '~> 2.0'
 
 gem 'rack-attack', '~> 4.4'
 
