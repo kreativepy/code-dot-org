@@ -45,13 +45,6 @@ GIT
     omniauth-clever (1.2.1)
       omniauth-oauth2 (>= 1.1.1)
 
-GIT
-  remote: git://github.com/wjordan/sprockets-derailleur.git
-  revision: cb822dda2d2af5f4e2d796fd251cc4c370e71664
-  specs:
-    sprockets-derailleur (0.0.10)
-      sprockets (>= 2, < 4)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -716,7 +709,6 @@ DEPENDENCIES
   spring (~> 1.7.2)
   spring-commands-testunit
   sprockets (~> 3.6.3)
-  sprockets-derailleur!
   sprockets-rails (~> 3.1.1)
   sqlite3
   stringex (~> 2.5.2)
