@@ -9,27 +9,28 @@ reader = URI.parse(CDO.dashboard_reporting_db_reader) if CDO.dashboard_reporting
 %>
 
 mysql_defaults: &mysql_defaults
-  adapter: seamless_database_pool
-  pool_adapter: mysql2
+  adapter: mysql2
+#  pool_adapter: mysql2
   encoding: utf8
   pool: 5
-  master:
-    username: <%= writer.user || 'root' %>
-    password: <%= writer.password || '' %>
-    host: <%= writer.host || 'localhost' %>
-    database: <%= writer.path.sub(%r{^/},"") || "dashboard_#{Rails.env}" %>
+#  master:
+  username: <%= writer.user || 'root' %>
+  password: <%= writer.password || '' %>
+  host: <%= writer.host || 'localhost' %>
+  database: <%= writer.path.sub(%r{^/},"") || "dashboard_#{Rails.env}" %>
+
   <% if reader && reader.host != writer.host %>
     # When there is a separate read-only database configured, do NOT
     # include the master database in the read pool.
     # Ref: https://github.com/bdurand/seamless_database_pool#the-master-connection
     # "By default, the master connection will be included in the read pool.
     #  If you would like to dedicate this connection only for write operations, you should set the pool weight to zero."
-    pool_weight: 0
-  read_pool:
-   - username: <%= reader.user %>
-     password: <%= reader.password %>
-     host: <%= reader.host %>
-     database: <%= reader.path.sub(%r{^/},"") %>
+#    pool_weight: 0
+#  read_pool:
+#   - username: <%= reader.user %>
+#     password: <%= reader.password %>
+#     host: <%= reader.host %>
+#     database: <%= reader.path.sub(%r{^/},"") %>
   <% end %>
 
 development:

@@ -13,7 +13,7 @@ gem 'responders', '~> 2.0'
 gem 'sinatra', github: 'sinatra', require: 'sinatra/base'
 
 gem 'mysql2', '~> 0.3.13'
-gem 'seamless_database_pool'
+# gem 'seamless_database_pool'
 
 gem 'le', '~> 2.2'
 gem 'os'
@@ -32,7 +32,7 @@ gem 'rack_csrf'
 
 group :development do
   gem 'annotate'
-  gem 'rack-mini-profiler'
+  # gem 'rack-mini-profiler'
   gem 'rerun', '~> 0.10.0'
   gem 'shotgun'
   gem 'thin'
@@ -105,7 +105,7 @@ gem 'jquery-rails'
 gem 'phantomjs', '~> 1.9.7.1'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder', '~> 2.5'
 
 # authentication and permissions
 gem 'devise'
