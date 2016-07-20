@@ -118,7 +118,7 @@ gem 'omniauth-google-oauth2', '~> 0.3.1'
 gem 'omniauth-windowslive', '~> 0.0.10'
 gem 'omniauth-clever', '~> 1.2.1', github: 'wjordan/omniauth-clever'
 
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass', '~> 2.3.2.2'
 gem 'haml'
 
 gem 'jquery-ui-rails', '~> 5.0.3'
