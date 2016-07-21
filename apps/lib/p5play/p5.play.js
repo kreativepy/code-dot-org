@@ -1220,8 +1220,6 @@ function Sprite(pInst, _x, _y, _w, _h) {
         {
         this.collider = this.getBoundingBox();
         this.colliderType = 'image';
-        this._internalWidth = animations[currentAnimation].getWidth()*abs(this.scale);
-        this._internalHeight = animations[currentAnimation].getHeight()*abs(this.scale);
         //quadTree.insert(this);
         }
 
@@ -1229,8 +1227,6 @@ function Sprite(pInst, _x, _y, _w, _h) {
         if(animations[currentAnimation].frameChanged || this._internalWidth === undefined || this._internalHeight === undefined)
         {
         //this.collider = this.getBoundingBox();
-        this._internalWidth = animations[currentAnimation].getWidth()*abs(this.scale);
-        this._internalHeight = animations[currentAnimation].getHeight()*abs(this.scale);
         }
       }
 
@@ -1854,6 +1850,8 @@ function Sprite(pInst, _x, _y, _w, _h) {
 
       newAnimation.isSpriteAnimation = true;
 
+      this._internalWidth = newAnimation.getWidth()*abs(this.scale);
+      this._internalHeight = newAnimation.getHeight()*abs(this.scale);
       return newAnimation;
     }
     else
@@ -1871,6 +1869,9 @@ function Sprite(pInst, _x, _y, _w, _h) {
         this.animation = anim;
       }
       anim.isSpriteAnimation = true;
+
+      this._internalWidth = anim.getWidth()*abs(this.scale);
+      this._internalHeight = anim.getHeight()*abs(this.scale);
       return anim;
     }
 
