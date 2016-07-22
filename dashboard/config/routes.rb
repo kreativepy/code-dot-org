@@ -50,10 +50,10 @@ Dashboard::Application.routes.draw do
   post '/api/sections/transfers', to: 'transfers#create'
 
   get '/sh/:id', to: redirect('/c/%{id}')
-  get '/sh/:id/:action', to: redirect('/c/%{id}/%{action}')
+  get '/sh/:id/:action_id', to: redirect('/c/%{id}/%{action_id}')
 
   get '/u/:id', to: redirect('/c/%{id}')
-  get '/u/:id/:action', to: redirect('/c/%{id}/%{action}')
+  get '/u/:id/:action_id', to: redirect('/c/%{id}/%{action_id}')
 
   resources :level_sources, path: '/c/', only: [:show, :edit, :update] do
     member do
@@ -222,7 +222,6 @@ Dashboard::Application.routes.draw do
   get '/admin/gatekeeper', :to => 'dynamic_config#gatekeeper_show', as: 'gatekeeper_show'
   post '/admin/gatekeeper/delete', :to => 'dynamic_config#gatekeeper_delete', as: 'gatekeeper_delete'
   post '/admin/gatekeeper/set', :to => 'dynamic_config#gatekeeper_set', as: 'gatekeeper_set'
-  get '/admin/:action', controller: 'reports', as: 'reports'
 
   get '/redeemprizes', to: 'reports#prizes', as: 'my_prizes'
 
@@ -330,7 +329,11 @@ Dashboard::Application.routes.draw do
   get '/dashboardapi/section_text_responses/:section_id', to: 'api#section_text_responses'
   get '/dashboardapi/section_assessments/:section_id', to: 'api#section_assessments'
   get '/dashboardapi/student_progress/:section_id/:student_id', to: 'api#student_progress'
-  get '/dashboardapi/:action', controller: 'api'
+  namespace :dashboardapi, module: :api do
+    ApiController.instance_methods(false).each do |action|
+      get action, action: action
+    end
+  end
   get '/dashboardapi/v1/pd/k5workshops', to: 'api/v1/pd/workshops#k5_public_map_index'
 
   get '/api/script_structure/:script_name', to: 'api#script_structure'
@@ -340,7 +343,11 @@ Dashboard::Application.routes.draw do
   get '/api/user_progress/:script_name/:stage_position/:level_position', to: 'api#user_progress_for_stage', as: 'user_progress_for_stage'
   get '/api/user_progress/:script_name/:stage_position/:level_position/:level', to: 'api#user_progress_for_stage', as: 'user_progress_for_stage_and_level'
   get '/api/user_progress', to: 'api#user_progress_for_all_scripts', as: 'user_progress_for_all_scripts'
-  get '/api/:action', controller: 'api'
+  namespace :api do
+    ApiController.instance_methods(false).each do |action|
+      get action, action: action
+    end
+  end
 
   namespace :api do
     namespace :v1 do
