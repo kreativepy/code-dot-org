@@ -268,8 +268,7 @@ GEM
     hashie (3.4.4)
     highline (1.6.21)
     hitimes (1.2.4)
-    honeybadger (1.16.7)
-      json
+    honeybadger (2.6.0)
     html2haml (2.0.0)
       erubis (~> 2.7.0)
       haml (~> 4.0.0)
@@ -646,7 +645,7 @@ DEPENDENCIES
   haml-rails
   haml_lint
   highline (~> 1.6.21)
-  honeybadger (~> 1.11)
+  honeybadger
   httparty
   jbuilder (~> 2.5)
   jquery-rails
