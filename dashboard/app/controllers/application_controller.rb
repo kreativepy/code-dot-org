@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   # this is needed to avoid devise breaking on email param
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  around_filter :with_locale
+  around_action :with_locale
 
   before_action :fix_crawlers_with_bad_accept_headers
 

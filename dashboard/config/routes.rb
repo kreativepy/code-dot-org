@@ -78,7 +78,11 @@ Dashboard::Application.routes.draw do
   root :to => "home#index"
   get '/home_insert', to: 'home#home_insert'
   get '/health_check', to: 'home#health_check'
-  get '/home/:action', controller: 'home'
+  namespace :home do
+    HomeController.instance_methods(false).each do |action|
+      get action, action: action
+    end
+  end
 
   resources :p, path: '/p/', only: [:index] do
     collection do
