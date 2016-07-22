@@ -1,6 +1,6 @@
 module Ops
   class WorkshopsController < OpsControllerBase
-    before_filter :convert_cohorts, only: [:create, :update]
+    before_action :convert_cohorts, only: [:create, :update]
     after_filter :notify_ops, only: [:update]
 
     load_and_authorize_resource

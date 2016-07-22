@@ -1,5 +1,5 @@
 class VideosController < ApplicationController
-  before_filter :authenticate_user!, except: [:test, :embed]
+  before_action :authenticate_user!, except: [:test, :embed]
   check_authorization except: [:test, :embed]
   load_and_authorize_resource except: [:test, :embed]
   after_action :allow_iframe, only: :embed

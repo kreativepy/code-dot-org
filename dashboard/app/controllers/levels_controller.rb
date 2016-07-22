@@ -6,8 +6,8 @@ EMPTY_XML = '<xml></xml>'
 class LevelsController < ApplicationController
   include LevelsHelper
   include ActiveSupport::Inflector
-  before_filter :authenticate_user!, except: [:show, :embed_blocks, :embed_level]
-  before_filter :require_levelbuilder_mode, except: [:show, :index, :embed_blocks, :embed_level]
+  before_action :authenticate_user!, except: [:show, :embed_blocks, :embed_level]
+  before_action :require_levelbuilder_mode, except: [:show, :index, :embed_blocks, :embed_level]
   load_and_authorize_resource except: [:create, :update_blocks, :edit_blocks, :embed_blocks, :embed_level]
   check_authorization
 

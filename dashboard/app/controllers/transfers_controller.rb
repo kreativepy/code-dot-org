@@ -1,5 +1,5 @@
 class TransfersController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   skip_before_filter :verify_authenticity_token
 
   # POST /sections/:id/transfers
