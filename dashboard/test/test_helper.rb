@@ -205,7 +205,7 @@ end
 
 # Helpers for all controller test cases
 class ActionController::TestCase
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
 
   setup do
     ActionDispatch::Cookies::CookieJar.always_write_cookie = true

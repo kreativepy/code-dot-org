@@ -2,7 +2,7 @@
 require 'test_helper'
 
 class ActivitiesControllerTest < ActionController::TestCase
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
   include LevelsHelper
   include UsersHelper
 
