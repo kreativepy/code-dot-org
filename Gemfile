@@ -14,7 +14,7 @@ gem 'responders', '~> 2.0'
 gem 'sinatra', github: 'sinatra', require: 'sinatra/base'
 
 gem 'mysql2', '~> 0.3.13'
-# gem 'seamless_database_pool'
+gem 'seamless_database_pool'
 
 gem 'le', '~> 2.2'
 gem 'os'

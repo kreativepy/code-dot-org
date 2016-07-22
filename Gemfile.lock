@@ -517,6 +517,8 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    seamless_database_pool (1.0.18)
+      activerecord (>= 3.0.20)
     securecompare (1.0.0)
     selectize-rails (0.12.2)
     selenium-webdriver (2.45.0)
@@ -700,6 +702,7 @@ DEPENDENCIES
   sass-rails
   scss_lint
   sdoc
+  seamless_database_pool
   selectize-rails
   selenium-webdriver (~> 2.45.0)
   sequel (~> 4.10)
