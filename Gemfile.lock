@@ -420,6 +420,8 @@ GEM
       rack
     rack-cache (1.6.1)
       rack (>= 0.4)
+    rack-mini-profiler (0.10.1)
+      rack (>= 1.2.0)
     rack-protection (1.5.3)
       rack
     rack-ssl-enforcer (0.2.9)
@@ -680,6 +682,7 @@ DEPENDENCIES
   pusher (~> 1.0)
   rack-attack (~> 4.4)
   rack-cache
+  rack-mini-profiler
   rack-ssl-enforcer
   rack_csrf
   rails (~> 5.0.0)
