@@ -147,7 +147,7 @@ gem 'stringex', '~> 2.5.2' # Provides String.to_ascii
 
 gem 'naturally' # for sorting string naturally
 
-gem 'retryable' # retry code blocks when they throw exceptions
+gem 'retryable', require: 'retryable/core_ext/kernel' # retry code blocks when they throw exceptions
 
 # Used by a build script.
 gem 'execjs'
