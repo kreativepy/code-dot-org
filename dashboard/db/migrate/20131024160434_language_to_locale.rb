@@ -1,4 +1,4 @@
-class LanguageToLocale < ActiveRecord::Migration
+class LanguageToLocale < ActiveRecord::Migration[4.2]
 
   def up
     execute "ALTER TABLE users CHANGE language locale VARCHAR(10)"
