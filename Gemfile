@@ -163,9 +163,6 @@ gem 'font-awesome-rails', '~> 4.6.3'
 gem 'sequel', '~> 4.10'
 gem 'user_agent_parser'
 
-gem 'heroku_rails_deflate', group: [:staging, :production, :test, :levelbuilder] # gzip rails content and static assets
-# We don't use this gem in development because it doesn't work with rack-mini-profiler.
-
 gem "paranoia", "~> 2.2.0.pre" # 'delete' Rails model objects by setting a deleted_at column instead of deleting the row
 
 # JSON model serializer for REST APIs

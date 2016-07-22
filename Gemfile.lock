@@ -266,10 +266,6 @@ GEM
     hashdiff (0.3.0)
     hashery (2.1.2)
     hashie (3.4.4)
-    heroku_rails_deflate (1.0.3)
-      actionpack (>= 3.2.13)
-      activesupport (>= 3.2.13)
-      rack (>= 1.4.5)
     highline (1.6.21)
     hitimes (1.2.4)
     honeybadger (1.16.7)
@@ -641,7 +637,6 @@ DEPENDENCIES
   haml
   haml-rails
   haml_lint
-  heroku_rails_deflate
   highline (~> 1.6.21)
   honeybadger (~> 1.11)
   httparty
