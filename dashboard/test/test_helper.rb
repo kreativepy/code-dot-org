@@ -215,7 +215,7 @@ class ActionController::TestCase
 
   # override default html document to ask it to raise errors on invalid html
   def html_document
-    @html_document ||= if @response.content_type === Mime::XML
+    @html_document ||= if @response.content_type === Mime[:xml]
                          Nokogiri::XML::Document.parse(@response.body, &:strict)
                        else
                          Nokogiri::HTML::Document.parse(@response.body, &:strict)
