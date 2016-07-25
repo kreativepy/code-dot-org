@@ -16,7 +16,10 @@ var ReadOnlyBlockSpace = React.createClass({
     if (!document.body.contains(this.refs.container)) {
       return new Error('ReadOnlyBlockSpace component MUST be rendered into a container that already exists in the DOM');
     }
-    Blockly.BlockSpace.createReadOnlyBlockSpace(this.refs.container, this.props.block);
+
+    Blockly.BlockSpace.createReadOnlyBlockSpace(this.refs.container, this.props.block, {
+      noScrolling: true
+    });
   },
 
   render: function () {
