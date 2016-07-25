@@ -61,7 +61,12 @@ module ScriptLevelsHelper
 
   def section_options
     current_user.sections.map do |section|
-      content_tag 'option', section.name, value: url_for(params.merge(section_id: section.id, user_id: nil))
+      content_tag 'option', section.name, value: url_for(
+        action: params[:action],
+        controller: params[:controller],
+        section_id: section.id,
+        user_id: nil
+      )
     end.join(" ").html_safe
   end
 end

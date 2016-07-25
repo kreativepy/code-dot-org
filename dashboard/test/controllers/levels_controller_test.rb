@@ -280,7 +280,7 @@ class LevelsControllerTest < ActionController::TestCase
   end
 
   test "should update level" do
-    patch :update, id: @level, level: {  }
+    patch :update, params: {id: @level, level: {stub: nil}}
     # Level update now uses AJAX callback, returns a 200 JSON response instead of redirect
     assert_response :success
   end

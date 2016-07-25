@@ -163,7 +163,7 @@ class ActivitiesControllerTest < ActionController::TestCase
 
   test "successful milestone does not require script_level_id" do
     params = @milestone_params
-    params[:script_level_id] = nil
+    params.delete(:script_level_id)
     params[:level_id] = @script_level.level.id
     params[:result] = 'true'
 
@@ -173,7 +173,7 @@ class ActivitiesControllerTest < ActionController::TestCase
 
   test "unsuccessful milestone does not require script_level_id" do
     params = @milestone_params
-    params[:script_level_id] = nil
+    params.delete(:script_level_id)
     params[:level_id] = @script_level.level.id
     params[:result] = 'false'
 
