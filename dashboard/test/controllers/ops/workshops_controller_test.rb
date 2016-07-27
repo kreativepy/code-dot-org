@@ -66,10 +66,7 @@ module Ops
         "name" => @workshop.name,
         "program_type" => "5",
         "location" => @workshop.location,
-        "instructions" => nil,
-        "cohorts" => [{"id" => @cohort.id}, {"id" => another_cohort.id}],
-        "facilitators" => nil,
-        "teachers" => nil
+        "cohorts" => [{"id" => @cohort.id}, {"id" => another_cohort.id}]
       }
       patch :update, id: @workshop.id, workshop: workshop_params
       assert_response :success
