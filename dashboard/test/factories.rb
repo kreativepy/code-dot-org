@@ -197,10 +197,10 @@ FactoryGirl.define do
     game {create(:game, app: 'evaluation_multi')}
   end
 
-  factory :external, parent: Level, class: External do
+  factory :external, parent: :level, class: External do
   end
 
-  factory :external_link, parent: Level, class: ExternalLink do
+  factory :external_link, parent: :level, class: ExternalLink do
     game {Game.external_link}
     url nil
     link_title 'title'

@@ -3,6 +3,9 @@ require 'test_helper'
 class ProjectsControllerTest < ActionController::TestCase
   include Devise::Test::ControllerHelpers
   setup do
+    # Workaround for 'undefined method `user_id` in ActionDispatch::TestRequest'
+    ActionDispatch::TestRequest.any_instance.stubs(:user_id).returns(nil)
+
     sign_in create(:user)
   end
 
