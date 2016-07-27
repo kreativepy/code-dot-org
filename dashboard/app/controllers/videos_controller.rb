@@ -107,7 +107,7 @@ class VideosController < ApplicationController
   end
 
   # This is to fix a ForbiddenAttributesError CanCan issue.
-  prepend_before_filter do
+  prepend_before_action do
     params[:video] &&= video_params
   end
 end
