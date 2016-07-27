@@ -77,6 +77,7 @@ class Applab < Blockly
     if self.code_functions.present? && self.code_functions.is_a?(String)
       self.code_functions = JSON.parse(self.code_functions)
     end
+    true
   rescue JSON::ParserError => e
     errors.add(:code_functions, "#{e.class.name}: #{e.message}")
     return false
@@ -87,6 +88,7 @@ class Applab < Blockly
     if value.present? && value.is_a?(String)
       self.properties[property_field] = JSON.parse value
     end
+    true
   rescue JSON::ParserError => e
     errors.add(property_field, "#{e.class.name}: #{e.message}")
     return false
@@ -96,7 +98,8 @@ class Applab < Blockly
     palette_result = update_palette
     log_conditions_result = parse_json_property_field('log_conditions')
 
-    return palette_result && log_conditions_result
+    success = palette_result && log_conditions_result
+    throw :abort unless success
   end
 
   def self.palette

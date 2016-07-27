@@ -1183,7 +1183,7 @@ class ActivitiesControllerTest < ActionController::TestCase
     user_level = UserLevel.find_by(user_id: @user.id, script_id: @script.id, level_id: @level.id)
     pairings.each do |pairing|
       pairing_user_level = UserLevel.find_by(user_id: pairing.id, script_id: @script.id, level_id: @level.id)
-      assert PairedUserLevel.find_by(driver_user_level_id: user_level, navigator_user_level_id: pairing_user_level),
+      assert PairedUserLevel.find_by(driver_user_level_id: user_level.id, navigator_user_level_id: pairing_user_level.id),
         "could not find PairedUserLevel"
     end
   end

@@ -104,9 +104,7 @@ class LevelsController < ApplicationController
       # do not allow case-only changes in the level name because that confuses git on OSX
       @level.errors.add(:name, 'Cannot change only the capitalization of the level name (it confuses git on OSX)')
       render json: @level.errors, status: :unprocessable_entity
-      return
-    end
-    if @level.update(level_params)
+    elsif @level.update(level_params)
       render json: { redirect: level_url(@level, show_callouts: 1) }
     else
       render json: @level.errors, status: :unprocessable_entity
@@ -120,7 +118,7 @@ class LevelsController < ApplicationController
     type_class = level_params[:type].constantize
 
     # Set some defaults.
-    params[:level].reverse_merge!(skin: type_class.skins.first) if type_class <= Blockly
+    params[:level][:skin] ||= type_class.skins.first if type_class <= Blockly
     if type_class <= Grid
       default_tile = type_class == Karel ? {"tileType": 0} : 0
       start_tile = type_class == Karel ? {"tileType": 2} : 2

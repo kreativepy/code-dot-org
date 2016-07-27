@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
 
     if request.formats.include?("image/*") &&
         (request.user_agent.include?("Edmodo") || request.user_agent.include?("weebly-agent"))
-      request.formats.append Mime::HTML
+      request.formats.append Mime[:html]
     end
   end
 
