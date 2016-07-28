@@ -281,6 +281,9 @@ GEM
       multi_xml (>= 0.5.2)
     httpclient (2.8.0)
     i18n (0.7.0)
+    ims-lti (1.1.10)
+      builder
+      oauth (~> 0.4.5)
     io-like (0.3.0)
     jbuilder (2.5.0)
       activesupport (>= 3.0.0, < 5.1)
@@ -362,7 +365,7 @@ GEM
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
-    oauth (0.5.1)
+    oauth (0.4.7)
     oauth2 (1.2.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
@@ -647,6 +650,7 @@ DEPENDENCIES
   highline (~> 1.6.21)
   honeybadger
   httparty
+  ims-lti (~> 1.1)
   jbuilder (~> 2.5)
   jquery-rails
   jquery-ui-rails (~> 5.0.3)
