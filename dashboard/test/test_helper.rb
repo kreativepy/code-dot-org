@@ -19,7 +19,7 @@ ENV["RACK_ENV"] = "test"
 # RAILS ENV. We fix it above but we need to reload some stuff...
 
 CDO.rack_env = "test" if defined? CDO
-Rails.application.reload_routes! if defined? Rails
+Rails.application.reload_routes! if defined?(Rails) && defined?(Rails.application)
 
 require File.expand_path('../../config/environment', __FILE__)
 I18n.load_path += Dir[Rails.root.join('test', 'en.yml')]
