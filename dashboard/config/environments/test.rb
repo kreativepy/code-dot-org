@@ -46,6 +46,9 @@ Dashboard::Application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
+  # Disable Rails.cache when running unit tests.
+  config.cache_store = :null_store if ci_test
+
 #  config.action_mailer.raise_delivery_errors = true
 #  config.action_mailer.delivery_method = :smtp
 
