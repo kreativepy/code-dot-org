@@ -201,7 +201,19 @@ FactoryGirl.define do
 
   factory :multi, parent: :level, class: Applab do
     game {create(:game, app: "multi")}
-    properties{{question: 'question text', answers: [{text: 'text1', correct: true}], questions: [{text: 'text2'}], options: {hide_submit: false}}}
+    properties {
+      {
+        question: 'question text',
+        answers: [
+          {text: 'answer1', correct: true},
+          {text: 'answer2', correct: false},
+          {text: 'answer3', correct: false},
+          {text: 'answer4', correct: false}],
+        questions: [
+          {text: 'question text'}],
+        options: {hide_submit: false}
+      }
+    }
   end
 
   factory :evaluation_multi, parent: :level, class: EvaluationMulti do
